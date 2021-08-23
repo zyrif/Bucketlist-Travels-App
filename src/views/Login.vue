@@ -1,29 +1,25 @@
 <template>
   <v-container fill-height>
     <v-row align="center" justify="center">
-      <v-col cols="4">
-        <h1 class="text-center">BucketList Logo</h1>
-        <v-text-field placeholder="     Username">
-            <v-icon slot="prepend" class="mr-4">far fa-user</v-icon>
-        </v-text-field>
-        <v-text-field placeholder="     Password">
-            <v-icon slot="prepend" class="mr-4">fas fa-lock</v-icon>
-        </v-text-field>
-        <div class="text-center">
-          <v-btn outlined rounded>Sign in</v-btn>
-        </div>
-        <p class="text-center mt-4">or</p>
-        <div class="text-center">
-          <v-btn dark rounded>Sign up</v-btn>
-        </div>
-      </v-col>
+      <signin-form v-if="isSigningIn" @signupClicked="ToggleSignup"/>
+      <signup-form v-else/>
     </v-row>
   </v-container>
 </template>
 
 <script>
+import SigninForm from '../components/SigninForm.vue'
+import SignupForm from '../components/SignupForm.vue'
 export default {
-
+  components: { SigninForm, SignupForm },
+  data: () => ({
+    isSigningIn: true
+  }),
+  methods: {
+    ToggleSignup: function() {
+      this.isSigningIn = false;
+    } 
+  }
 }
 </script>
 
