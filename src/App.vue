@@ -2,14 +2,16 @@
   <v-app>
     <v-app-bar
       app
+      prominent
       elevation="0"
     >
-      <h1 v-if="showLogo">BucketList Logo</h1>
+      <site-logo v-if="showLogo" />
       <v-spacer></v-spacer>
       <v-btn
         v-if="showLogin"
         outlined
         rounded
+        class="my-auto"
         @click="loginHandler"
       >
         Sign in
@@ -23,10 +25,11 @@
 </template>
 
 <script>
+import SiteLogo from './components/SiteLogo.vue'
 
 export default {
   name: 'App',
-
+  components: { SiteLogo },
   computed: {
     showLogo: function() {
       return this.$route.name === 'Home' || this.$route.name === 'Login' ? false : true;

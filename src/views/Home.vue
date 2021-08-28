@@ -1,8 +1,8 @@
 <template>
   <v-container fill-height>
-    <v-row align="center" justify="center">
+    <v-row align="center" justify="center" style="transform: translateY(-5vw)">
       <v-col cols="8">
-        <h1 class="text-center my-2">BucketList Logo</h1>
+        <site-logo logotype="hero"/>
         <v-text-field
           filled
           rounded
@@ -32,8 +32,9 @@
 </template>
 
 <script>
+import SiteLogo from '../components/SiteLogo.vue'
 export default {
-
+  components: { SiteLogo }
 }
 </script>
 

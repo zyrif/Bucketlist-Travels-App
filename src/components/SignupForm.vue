@@ -1,6 +1,6 @@
 <template>
   <v-col cols="4">
-    <h1 class="text-center">BucketList Logo</h1>
+    <site-logo logotype="hero"/>
     <v-text-field placeholder="     Username">
       <v-icon slot="prepend" class="mr-4">far fa-user</v-icon>
     </v-text-field>
@@ -17,9 +17,11 @@
 </template>
 
 <script>
-export default {
-  name: 'SignupForm'
+import SiteLogo from '../components/SiteLogo.vue'
 
+export default {
+  name: 'SignupForm',
+  components: { SiteLogo }
 }
 </script>
 
