@@ -15,7 +15,7 @@
       Forgot Password?
     </div>
     <div class="text-center">
-      <v-btn outlined rounded>Sign in</v-btn>
+      <v-btn outlined rounded @click="signInHandler">Sign in</v-btn>
     </div>
     <p class="text-center mt-4">or</p>
     <div class="text-center">
@@ -45,6 +45,9 @@ export default {
     };
   },
   methods: {
+    signInHandler: function () {
+      this.$router.push("/dashboard");
+    },
     SignupHandler: function () {
       this.$emit("signupClicked");
     },
