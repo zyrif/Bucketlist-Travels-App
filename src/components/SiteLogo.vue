@@ -1,5 +1,5 @@
 <template>
-  <v-img v-bind="options" class="mx-auto my-8" />
+  <v-img v-bind="options" class="mx-auto my-8" @click="logoClickHandler" />
 </template>
 
 <script>
@@ -24,7 +24,16 @@ export default {
         src: this.dark
           ? require("../assets/logo_dark.svg")
           : require("../assets/logo_bright.svg"),
+        style:
+          this.$route.name !== "Home" ? "cursor: pointer" : "cursor: default",
       };
+    },
+  },
+  methods: {
+    logoClickHandler: function () {
+      if (this.$route.name !== "Home") {
+        this.$router.push("/");
+      }
     },
   },
 };
