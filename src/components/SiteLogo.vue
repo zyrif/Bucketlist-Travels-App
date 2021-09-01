@@ -1,24 +1,30 @@
 <template>
-  <v-img
-    :max-width="getWidth"
-    src="../assets/logo.svg"
-    class="mx-auto my-8"
-  />
+  <v-img v-bind="options" class="mx-auto my-8" />
 </template>
 
 <script>
 export default {
   props: {
     logotype: {
+      type: String,
       default: "brand",
       validator: function (value) {
         return ["brand", "hero"].indexOf(value) !== -1;
       },
     },
+    dark: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
-    getWidth: function () {
-      return this.logotype === "hero" ? "23vw" : "12vw";
+    options: function () {
+      return {
+        "max-width": this.logotype === "hero" ? "23vw" : "12vw",
+        src: this.dark
+          ? require("../assets/logo_dark.svg")
+          : require("../assets/logo_bright.svg"),
+      };
     },
   },
 };
