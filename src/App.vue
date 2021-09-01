@@ -1,14 +1,11 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      prominent
-      elevation="0"
-    >
+    <v-app-bar app prominent color="rgba(0, 0, 0, 0)" elevation="0">
       <site-logo v-if="showLogo" />
       <v-spacer></v-spacer>
       <v-btn
         v-if="showLogin"
+        dark
         outlined
         rounded
         class="my-auto"
@@ -19,33 +16,35 @@
     </v-app-bar>
 
     <v-main>
-      <router-view/>
+      <router-view />
     </v-main>
   </v-app>
 </template>
 
 <script>
-import SiteLogo from './components/SiteLogo.vue'
+import SiteLogo from "./components/SiteLogo.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: { SiteLogo },
   computed: {
-    showLogo: function() {
-      return this.$route.name === 'Home' || this.$route.name === 'Login' ? false : true;
+    showLogo: function () {
+      return this.$route.name === "Home" || this.$route.name === "Login"
+        ? false
+        : true;
     },
-    showLogin: function() {
-      return this.$route.name === 'Login' ? false : true;
-    }
+    showLogin: function () {
+      return this.$route.name === "Login" ? false : true;
+    },
   },
   data: () => ({
     //
   }),
   methods: {
-    loginHandler: function() {
-      this.$router.push('/login');
-    }
-  }
+    loginHandler: function () {
+      this.$router.push("/login");
+    },
+  },
 };
 </script>
 
@@ -53,5 +52,9 @@ export default {
 .v-application {
   background-image: url("./assets/Main-BG.jpg") !important;
   background-size: cover !important;
+}
+
+.v-main {
+  background-color: rgba(0, 0, 0, 0.3);
 }
 </style>

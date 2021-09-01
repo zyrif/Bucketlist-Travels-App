@@ -6,7 +6,7 @@
         <v-text-field
           filled
           rounded
-          background-color="grey lighten-2"
+          background-color="white"
           color="green"
           placeholder="Search a place you wanna go..."
         >
@@ -18,7 +18,9 @@
 
           <template #append>
             <v-btn
+              dark
               rounded
+              color="#3e7758"
               elevation="0"
               style="top: -7px; left: 14px"
             >

@@ -1,35 +1,35 @@
 <template>
   <v-col cols="4">
-    <site-logo logotype="hero"/>
-    <v-text-field placeholder="     Username">
+    <site-logo logotype="hero" />
+    <v-text-field dark placeholder="     Username">
       <v-icon slot="prepend" class="mr-4">far fa-user</v-icon>
     </v-text-field>
-    <v-text-field placeholder="     Password">
+    <v-text-field dark placeholder="     Password">
       <v-icon slot="prepend" class="mr-4">fas fa-lock</v-icon>
     </v-text-field>
     <div
       class="div-forgot-password d-flex flex-row-reverse mb-4 text-caption"
-      style="cursor: pointer"
+      style="color: white; cursor: pointer"
       @click="ForgetPasswordHandler"
     >
       Forgot Password?
     </div>
     <div class="text-center">
-      <v-btn outlined rounded @click="signInHandler">Sign in</v-btn>
+      <v-btn dark outlined rounded @click="signInHandler">Sign in</v-btn>
     </div>
-    <p class="text-center mt-4">or</p>
+    <p class="text-center white--text mt-4">or</p>
     <div class="text-center">
-      <v-btn dark rounded @click="SignupHandler">Sign up</v-btn>
+      <v-btn rounded elevation="0" @click="SignupHandler">Sign up</v-btn>
     </div>
     <v-dialog v-model="isForgetPassOpen" max-width="450">
       <v-card>
-        <v-card-title>Enter Your Registered Email Address: </v-card-title>
+        <v-card-title>Enter Your Registered Email Address</v-card-title>
         <v-card-text>
           <v-text-field placeholder="Email" />
         </v-card-text>
         <v-card-actions>
           <v-spacer />
-          <v-btn text> reset </v-btn>
+          <v-btn text> proceed </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import SiteLogo from './SiteLogo.vue';
+import SiteLogo from "./SiteLogo.vue";
 
 export default {
   name: "SigninForm",
@@ -63,6 +63,6 @@ export default {
 
 <style>
 .div-forgot-password:hover {
-  color: #42A5F5;
+  color: #42a5f5;
 }
 </style>
