@@ -48,3 +48,10 @@ export default {
   }
 };
 </script>
+
+<style>
+.v-application {
+  background-image: url("./assets/Main-BG.jpg") !important;
+  background-size: cover !important;
+}
+</style>
