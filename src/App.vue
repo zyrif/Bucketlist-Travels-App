@@ -13,6 +13,9 @@
       >
         Sign in
       </v-btn>
+      <v-avatar v-if="showAvatar" color="#264F49" class="my-auto">
+        <span class="white--text text-h6 font-weight-light">MR</span>
+      </v-avatar>
     </v-app-bar>
 
     <v-main v-bind="getVMainStyles">
@@ -35,6 +38,12 @@ export default {
     },
     showLogin: function () {
       return this.$route.name === "Login" ? false : true;
+    },
+    showAvatar: function () {
+      if (this.$route.name === "Home" || this.$route.name === "Login") {
+        return false;
+      }
+      return true;
     },
     getVAppStyles: function () {
       return {
