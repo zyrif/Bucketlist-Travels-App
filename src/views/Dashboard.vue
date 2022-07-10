@@ -3,13 +3,18 @@
     <v-row align="start">
       <cover />
     </v-row>
+    <v-row align="center">
+      <v-col cols="2">
+        <profile />
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
 <script>
-import Cover from "../components/DashboardCover.vue"
+import Profile from '../components/DashboardProfile.vue'
 export default {
-  components: { Cover }
+  components: { Cover, Profile }
 }
 </script>
 
