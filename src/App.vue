@@ -1,6 +1,6 @@
 <template>
   <v-app v-bind="getVAppStyles">
-    <v-app-bar app prominent short color="rgba(0, 0, 0, 0)" elevation="0">
+    <v-app-bar app prominent :color="getVAppBarColor" elevation="0">
       <site-logo v-if="showLogo" dark />
       <v-spacer></v-spacer>
       <v-btn
@@ -61,6 +61,11 @@ export default {
             : "",
       };
     },
+    getVAppBarColor: function () {
+      return this.$route.name === "Home" || this.$route.name === "Login"
+        ? "rgba(0, 0, 0, 0)"
+        : "rgba(255, 255, 255, 255)"
+    }
   },
   methods: {
     loginHandler: function () {
