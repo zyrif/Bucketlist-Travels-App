@@ -1,6 +1,6 @@
 <template>
   <v-app v-bind="getVAppStyles">
-    <v-app-bar app prominent color="rgba(0, 0, 0, 0)" elevation="0">
+    <v-app-bar app prominent short color="rgba(0, 0, 0, 0)" elevation="0">
       <site-logo v-if="showLogo" dark />
       <v-spacer></v-spacer>
       <v-btn

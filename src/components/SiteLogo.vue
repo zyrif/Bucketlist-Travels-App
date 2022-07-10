@@ -1,5 +1,5 @@
 <template>
-  <v-img v-bind="options" class="mx-auto my-8" @click="logoClickHandler" />
+  <v-img v-bind="options" @click="logoClickHandler" />
 </template>
 
 <script>
@@ -20,7 +20,10 @@ export default {
   computed: {
     options: function () {
       return {
-        "max-width": this.logotype === "hero" ? "23vw" : "12vw",
+        "class": this.logotype === "hero" ? "mx-auto my-5" : "mx-8 my-auto",
+        "max-width": this.logotype === "hero" ? "23vw" : "10vw",
+        "min-width": this.logotype === "hero" ? "180px" : "140px",
+        "min-height": this.logotype === "hero" ? "64px" : "48px",
         src: this.dark
           ? require("../assets/logo_dark.svg")
           : require("../assets/logo_bright.svg"),
