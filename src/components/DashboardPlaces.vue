@@ -1,22 +1,24 @@
 <template>
   <div style="display:contents">
     <v-card v-for="place in places" v-bind:key="place.sortOrder" rounded="lg" color="grey lighten-4" elevation="0" class="ma-4 pa-2">
-     <v-list-item three-line>
-       <v-list-item-avatar tile color="grey" size="120">
-       </v-list-item-avatar>
-       <v-list-item-content>
-         <v-list-item-title class="text-h5">
-           {{ place.name }}
-         </v-list-item-title>
-         <v-list-item-subtitle class="black--text">
-           {{ place.description }} 
-         </v-list-item-subtitle>
-       </v-list-item-content>
-     </v-list-item>
-     <v-card-actions class="ml-6">
-       <v-btn icon> <v-icon dense color="black"> fas fa-map-marker-alt </v-icon> </v-btn>
-       <v-btn icon> <v-icon dense color="black"> fas fa-location-arrow </v-icon> </v-btn>
-     </v-card-actions>
+       <div class="d-flex">
+         <div>
+            <v-avatar tile color="grey" size="140" class="ma-4">
+            </v-avatar>
+          </div>
+         <div>
+          <v-card-title class="text-h5">
+            {{ place.name }}
+          </v-card-title>
+          <v-card-text class="black--text">
+            {{ place.description }} 
+          </v-card-text>
+          <v-card-text>
+            <v-btn icon class="mx-2"> <v-icon dense color="black"> fas fa-map-marker-alt </v-icon> </v-btn>
+            <v-btn icon class="mx-2"> <v-icon dense color="black"> fas fa-location-arrow </v-icon> </v-btn>
+          </v-card-text>
+         </div>
+       </div>
     </v-card>
   </div>
 </template>
