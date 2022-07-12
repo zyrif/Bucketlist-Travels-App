@@ -9,29 +9,7 @@
         <navbar />
       </v-col>
       <v-col cols="10">
-        <v-text-field
-          filled
-          outlined
-          rounded
-          background-color="white"
-          color="grey"
-          placeholder="Search a place you wanna go..."
-          class="ma-4"
-        >
-          <template #append>
-            <v-btn
-              dark
-              rounded
-              color="white"
-              elevation="0"
-              style="top: -7px; left: 14px"
-            >
-              <v-icon dense color="grey">
-                fas fa-search
-              </v-icon>
-            </v-btn>
-          </template>
-        </v-text-field>
+        <place-search />
         <v-card rounded="lg" color="grey lighten-4" elevation="0" class="ma-4 pa-2">
          <v-list-item three-line>
            <v-list-item-avatar tile color="grey" size="120">
@@ -77,8 +55,9 @@
 import Cover from '../components/DashboardCover.vue'
 import Navbar from '../components/DashboardNavbar.vue'
 import Profile from '../components/DashboardProfile.vue'
+import PlaceSearch from '../components/DashboardPlaceSearch.vue'
 export default {
-  components: { Cover, Profile, Navbar }
+  components: { Cover, Profile, Navbar, PlaceSearch }
 }
 </script>
 
