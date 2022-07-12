@@ -10,42 +10,7 @@
       </v-col>
       <v-col cols="10">
         <place-search />
-        <v-card rounded="lg" color="grey lighten-4" elevation="0" class="ma-4 pa-2">
-         <v-list-item three-line>
-           <v-list-item-avatar tile color="grey" size="120">
-           </v-list-item-avatar>
-           <v-list-item-content>
-             <v-list-item-title class="text-h5">
-               Vinnya Jagat
-             </v-list-item-title>
-             <v-list-item-subtitle class="black--text">
-               Vinnya Jagat is located at Paglapir, Khaleya, Rangpur. This is the only amusement park listed in Rangpur.
-             </v-list-item-subtitle>
-           </v-list-item-content>
-         </v-list-item> 
-         <v-card-actions class="ml-6">
-           <v-btn icon> <v-icon dense color="black"> fas fa-map-marker-alt </v-icon> </v-btn>
-           <v-btn icon> <v-icon dense color="black"> fas fa-location-arrow </v-icon> </v-btn>
-         </v-card-actions>
-        </v-card>
-        <v-card rounded="lg" color="grey lighten-4" elevation="0" class="ma-4 pa-2">
-         <v-list-item three-line>
-           <v-list-item-avatar tile color="grey" size="120">
-           </v-list-item-avatar>
-           <v-list-item-content>
-             <v-list-item-title class="text-h5">
-               Tajhat Jamidar Palace
-             </v-list-item-title>
-             <v-list-item-subtitle class="black--text">
-               Tajhat Palace, Tajhat Rajbari, is a historic palace of Bangladesh, located in Tajhat, Rangpur. This palace now holds the Rangpur museum. Tajhat Palace is situated three km. south-east of the city of Rangpur, on the outskirts of town.
-             </v-list-item-subtitle>
-           </v-list-item-content>
-         </v-list-item> 
-         <v-card-actions class="ml-6">
-           <v-btn icon> <v-icon dense color="black"> fas fa-map-marker-alt </v-icon> </v-btn>
-           <v-btn icon> <v-icon dense color="black"> fas fa-location-arrow </v-icon> </v-btn>
-         </v-card-actions>
-        </v-card>
+        <places />
       </v-col>
     </v-row>
   </v-container>
@@ -56,8 +21,9 @@ import Cover from '../components/DashboardCover.vue'
 import Navbar from '../components/DashboardNavbar.vue'
 import Profile from '../components/DashboardProfile.vue'
 import PlaceSearch from '../components/DashboardPlaceSearch.vue'
+import Places from '../components/DashboardPlaces.vue'
 export default {
-  components: { Cover, Profile, Navbar, PlaceSearch }
+  components: { Cover, Profile, Navbar, PlaceSearch, Places }
 }
 </script>
 
