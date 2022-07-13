@@ -16,7 +16,8 @@
           <v-card-text>
             <v-btn icon class="mx-2"> <v-icon dense color="black"> fas fa-map-marker-alt </v-icon> </v-btn>
             <v-btn icon class="mx-2"> <v-icon dense color="black"> fas fa-location-arrow </v-icon> </v-btn>
-            <v-btn v-if="!myList" icon class="mx-2"> <v-icon dense color="black"> fas fa-plus-circle </v-icon> </v-btn>
+            <v-btn v-if="!myList && !place.visited" icon class="mx-2"> <v-icon dense color="black"> fas fa-plus-circle </v-icon> </v-btn>
+            <v-btn v-if="!myList && place.visited" icon class="mx-2"> <v-icon dense color="black"> fas fa-check-circle </v-icon> </v-btn>
           </v-card-text>
          </div>
        </div>
@@ -37,6 +38,7 @@ export default {
           name: "Vinnya Jagat",
           description: "Vinnya Jagat is located at Paglapir, Khaleya, Rangpur. This is the only amusement park listed in Rangpur.",
           coOrdinates: { lat: 25.833195220070884, lon: 89.1118665127216 },
+          visited: true,
         },
         {
           id: 2,
@@ -44,6 +46,7 @@ export default {
           name: "Tajhat Jamidar Palace",
           description: "Tajhat Palace, Tajhat Rajbari, is a historic palace of Bangladesh, located in Tajhat, Rangpur. This palace now holds the Rangpur museum. Tajhat Palace is situated three km. south-east of the city of Rangpur, on the outskirts of town.",
           coOrdinates: { lat: 25.725456774856756, lon: 89.27992473534323 },
+          visited: false,
         }
       ]
   })
