@@ -14,7 +14,7 @@
           <places />
         </div>
         <div v-if="navActiveItem === 1" style="display:contents">
-          <places />
+          <places my-list />
         </div>
       </v-col>
     </v-row>

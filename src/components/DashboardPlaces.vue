@@ -16,6 +16,7 @@
           <v-card-text>
             <v-btn icon class="mx-2"> <v-icon dense color="black"> fas fa-map-marker-alt </v-icon> </v-btn>
             <v-btn icon class="mx-2"> <v-icon dense color="black"> fas fa-location-arrow </v-icon> </v-btn>
+            <v-btn v-if="!myList" icon class="mx-2"> <v-icon dense color="black"> fas fa-plus-circle </v-icon> </v-btn>
           </v-card-text>
          </div>
        </div>
@@ -25,6 +26,9 @@
 
 <script>
 export default {
+  props: {
+    myList: Boolean,
+  },
   data: () => ({
     places: [
         {
