@@ -1,7 +1,7 @@
 <template>
   <v-card elevation="0">
     <v-list dense>
-      <v-list-item-group>
+      <v-list-item-group v-model="activeItem">
         <v-list-item>
           <v-list-item-content class="pl-8">
             <v-list-item-title>Explore Areas</v-list-item-title>
@@ -57,7 +57,18 @@
 
 <script>
 export default {
-
+  model: {
+    prop: 'activeItem',
+    event: 'item-number',
+  },
+  data: () => ({
+    activeItem: 0,
+  }),
+  watch: {
+    activeItem: function (itemNumber) {
+      this.$emit('item-number', itemNumber)
+    }
+  }
 }
 </script>
 

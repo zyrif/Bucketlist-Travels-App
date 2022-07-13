@@ -6,11 +6,13 @@
     <v-row align="start">
       <v-col cols="2">
         <profile />
-        <navbar />
+        <navbar v-model="navActiveItem" />
       </v-col>
       <v-col cols="10">
-        <place-search />
-        <places />
+        <div v-if="navActiveItem === 0" style="display:contents">
+          <place-search />
+          <places />
+        </div>
       </v-col>
     </v-row>
   </v-container>
@@ -23,7 +25,10 @@ import Profile from '../components/DashboardProfile.vue'
 import PlaceSearch from '../components/DashboardPlaceSearch.vue'
 import Places from '../components/DashboardPlaces.vue'
 export default {
-  components: { Cover, Profile, Navbar, PlaceSearch, Places }
+  components: { Cover, Profile, Navbar, PlaceSearch, Places },
+  data: () => ({
+    navActiveItem: 0,
+  }),
 }
 </script>
 
