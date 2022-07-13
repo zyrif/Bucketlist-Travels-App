@@ -13,6 +13,9 @@
           <place-search />
           <places />
         </div>
+        <div v-if="navActiveItem === 1" style="display:contents">
+          <places />
+        </div>
       </v-col>
     </v-row>
   </v-container>
