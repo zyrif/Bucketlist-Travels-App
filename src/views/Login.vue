@@ -1,8 +1,8 @@
 <template>
   <v-container fill-height>
     <v-row align="center" justify="center">
-      <signin-form v-if="isSigningIn" @signupClicked="ToggleSignup"/>
-      <signup-form v-else/>
+      <signin-form v-if="isSigningIn" @signupClicked="toggleForm"/>
+      <signup-form v-else @signinClicked="toggleForm"/>
     </v-row>
   </v-container>
 </template>
@@ -16,8 +16,8 @@ export default {
     isSigningIn: true
   }),
   methods: {
-    ToggleSignup: function() {
-      this.isSigningIn = false;
+    toggleForm: function() {
+      this.isSigningIn = !this.isSigningIn;
     } 
   }
 }
