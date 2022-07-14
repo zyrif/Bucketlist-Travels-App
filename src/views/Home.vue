@@ -2,8 +2,10 @@
   <v-container fill-height>
     <v-row align="center" justify="center" style="transform: translateY(-5vw)">
       <v-col cols="8">
-        <site-logo logotype="hero"/>
+        <site-logo v-if="!resultsVisible" logotype="hero"/>
         <v-text-field
+          ref="searchInput"
+          v-model="searchText"
           filled
           rounded
           background-color="white"
@@ -28,15 +30,37 @@
             </v-btn>
           </template>
         </v-text-field>
+        <places v-if="resultsVisible" />
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
+import Vue from 'vue'
 import SiteLogo from '../components/SiteLogo.vue'
+import Places from '../components/DashboardPlaces.vue'
 export default {
-  components: { SiteLogo }
+  components: { SiteLogo, Places },
+  data: () => ({
+    searchText: '',
+    resultsVisible: false,
+  }),
+  watch: {
+    searchText: function (value) {
+      if (value.length > 0) {
+        this.resultsVisible = true
+        Vue.nextTick(() => {
+          this.$refs.searchInput.focus()
+        })
+      } else {
+        this.resultsVisible = false
+        Vue.nextTick(() => {
+          this.$refs.searchInput.focus()
+        })
+      }
+    }
+  }
 }
 </script>
 
