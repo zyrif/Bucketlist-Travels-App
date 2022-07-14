@@ -11,6 +11,7 @@
           background-color="white"
           color="green"
           placeholder="Search a place you wanna go..."
+          :class="searchInputClasses"
         >
           <template #prepend-inner>
             <v-icon dense left>
@@ -46,6 +47,11 @@ export default {
     searchText: '',
     resultsVisible: false,
   }),
+  computed: {
+    searchInputClasses: function () {
+      return this.resultsVisible ? 'mt-16' : ''
+    }
+  },
   watch: {
     searchText: function (value) {
       if (value.length > 0) {
