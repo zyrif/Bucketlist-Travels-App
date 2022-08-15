@@ -10,9 +10,9 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "gmap-vue": "^3.5.2",
-    "vue": "^2.6.11",
+    "vue": "^2.7.8",
     "vue-router": "^3.2.0",
-    "vuetify": "^2.4.0",
+    "vuetify": "^2.6.9",
     "vuex": "^3.4.0"
   },
   "devDependencies": {
@@ -28,7 +28,6 @@
     "sass": "~1.32.0",
     "sass-loader": "^10.0.0",
     "vue-cli-plugin-vuetify": "~2.4.8",
-    "vue-template-compiler": "^2.6.11",
-    "vuetify-loader": "^1.7.0"
+    "vuetify-loader": "^1.9.2"
   }
 }
