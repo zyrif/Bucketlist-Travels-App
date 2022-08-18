@@ -1,10 +1,10 @@
 <template>
   <v-col cols="4">
     <site-logo logotype="hero" />
-    <v-text-field dark placeholder="Username">
+    <v-text-field v-model="form.username" dark placeholder="Username">
       <v-icon slot="prepend" class="mr-4">far fa-user</v-icon>
     </v-text-field>
-    <v-text-field dark placeholder="Password" type="password">
+    <v-text-field v-model="form.password" dark placeholder="Password" type="password">
       <v-icon slot="prepend" class="mr-4">fas fa-lock</v-icon>
     </v-text-field>
     <div
@@ -21,7 +21,7 @@
     <div class="text-center">
       <v-btn rounded elevation="0" @click="SignupHandler">Sign up</v-btn>
     </div>
-    <v-dialog v-model="isForgetPassOpen" max-width="450">
+    <v-dialog v-model="states.isForgetPassOpen" max-width="450">
       <v-card>
         <v-card-title>Enter Your Registered Email Address</v-card-title>
         <v-card-text>
@@ -44,7 +44,15 @@ export default {
   components: { SiteLogo },
   data: function () {
     return {
-      isForgetPassOpen: false,
+      form: {
+        username: '',
+        password: ''
+      },
+
+      states: {
+        isForgetPassOpen: false
+      }
+
     };
   },
   methods: {
@@ -55,7 +63,7 @@ export default {
       this.$emit("signupClicked");
     },
     ForgetPasswordHandler: function () {
-      this.isForgetPassOpen = !this.isForgetPassOpen;
+      this.states.isForgetPassOpen = !this.states.isForgetPassOpen;
     },
   },
 };
