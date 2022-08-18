@@ -4,7 +4,7 @@
     <v-text-field dark placeholder="Username">
       <v-icon slot="prepend" class="mr-4">far fa-user</v-icon>
     </v-text-field>
-    <v-text-field dark placeholder="Password">
+    <v-text-field dark placeholder="Password" type="password">
       <v-icon slot="prepend" class="mr-4">fas fa-lock</v-icon>
     </v-text-field>
     <div
