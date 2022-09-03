@@ -35,6 +35,7 @@
 
 <script>
 import SiteLogo from "./SiteLogo.vue";
+import { mapActions } from "vuex";
 
 export default {
   name: "SigninForm",
@@ -56,7 +57,21 @@ export default {
 
   methods: {
     signInHandler: function () {
-      this.$router.push("/dashboard");
+      if (!this.form.email || !this.form.password) return
+
+      this.states.isSignInBtnLoading = true
+      this
+        .authenticate({
+          email: this.form.email,
+          password: this.form.password
+        })
+        .then(() => {
+          this.$router.push("/dashboard");
+        })
+        .catch(() => console.error('auth failed!'))
+        .finally(() => {
+          this.states.isSignInBtnLoading = false
+        })
     },
 
     SignupHandler: function () {
@@ -66,6 +81,7 @@ export default {
     ForgetPasswordHandler: function () {
       this.states.isForgetPassOpen = !this.states.isForgetPassOpen;
     },
+    ...mapActions('auth', ['authenticate'])
   },
 };
 </script>
