@@ -12,7 +12,7 @@
       Forgot Password?
     </div>
     <div class="text-center">
-      <v-btn dark outlined rounded @click="signInHandler">Sign in</v-btn>
+      <v-btn dark outlined rounded :loading="this.states.isSignInBtnLoading" @click="signInHandler">Sign in</v-btn>
     </div>
     <p class="text-center white--text mt-4">or</p>
     <div class="text-center">
@@ -48,6 +48,7 @@ export default {
       },
 
       states: {
+        isSignInBtnLoading: false,
         isForgetPassOpen: false
       }
     };
