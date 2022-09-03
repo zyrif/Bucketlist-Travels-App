@@ -1,8 +1,8 @@
 <template>
   <v-col cols="4">
     <site-logo logotype="hero" />
-    <v-text-field v-model="form.username" dark placeholder="Username">
-      <v-icon slot="prepend" class="mr-4">far fa-user</v-icon>
+    <v-text-field v-model="form.email" dark placeholder="Email" type="email">
+      <v-icon slot="prepend" class="mr-4">far fa-envelope</v-icon>
     </v-text-field>
     <v-text-field v-model="form.password" dark placeholder="Password" type="password">
       <v-icon slot="prepend" class="mr-4">fas fa-lock</v-icon>
@@ -45,7 +45,7 @@ export default {
   data: function () {
     return {
       form: {
-        username: '',
+        email: '',
         password: ''
       },
 
