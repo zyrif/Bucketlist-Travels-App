@@ -7,11 +7,8 @@
     <v-text-field v-model="form.password" dark placeholder="Password" type="password">
       <v-icon slot="prepend" class="mr-4">fas fa-lock</v-icon>
     </v-text-field>
-    <div
-      class="div-forgot-password d-flex flex-row-reverse mb-4 text-caption"
-      style="color: white; cursor: pointer"
-      @click="ForgetPasswordHandler"
-    >
+    <div class="div-forgot-password d-flex flex-row-reverse mb-4 text-caption" style="color: white; cursor: pointer"
+      @click="ForgetPasswordHandler">
       Forgot Password?
     </div>
     <div class="text-center">
@@ -41,6 +38,7 @@ import SiteLogo from "./SiteLogo.vue";
 
 export default {
   name: "SigninForm",
+
   components: { SiteLogo },
   data: function () {
     return {
@@ -52,16 +50,18 @@ export default {
       states: {
         isForgetPassOpen: false
       }
-
     };
   },
+
   methods: {
     signInHandler: function () {
       this.$router.push("/dashboard");
     },
+
     SignupHandler: function () {
       this.$emit("signupClicked");
     },
+
     ForgetPasswordHandler: function () {
       this.states.isForgetPassOpen = !this.states.isForgetPassOpen;
     },
@@ -73,7 +73,8 @@ export default {
 .div-forgot-password:hover {
   color: #42a5f5;
 }
-.v-text-field__slot > input {
+
+.v-text-field__slot>input {
   padding-left: 22px;
 }
 </style>
