@@ -20,18 +20,18 @@ const getters = {
 
 const mutations = {
   setUser: function(state, data) {
-    // if data is null, then set props to empty value
+    state.user.id = data.id
+    state.user.email = data.email
+  },
+
+  setUserAuthToken: function(state, auth_token) {
+    state.user.auth_token = auth_token
+  },
+
+  unsetUser: function(state) {
     for (let key of Object.keys(state.user)) {
       state.user[key] = ''
     }
-
-    if (data) {
-      state.user.id = data.id
-      state.user.email = data.email
-    }
-  },
-  setUserAuthToken: function(state, auth_token) {
-    state.user.auth_token = auth_token
   }
 }
 
