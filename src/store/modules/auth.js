@@ -4,6 +4,8 @@ const state = () => ({
   user: {
     id: '',
     email: '',
+    firstName: '',
+    lastName: '',
     auth_token: ''
   }
 });
@@ -15,6 +17,10 @@ const getters = {
 
   getUserEmail: function(state) {
     return state.user.email
+  },
+
+  getUserFullName: function(state, getters) {
+    return getters.isLoggedIn ? `${state.user.firstName} ${state.user.lastName}` : ""
   }
 }
 
@@ -22,6 +28,8 @@ const mutations = {
   setUser: function(state, data) {
     state.user.id = data.id
     state.user.email = data.email
+    state.user.firstName = data.first_name
+    state.user.lastName = data.last_name
   },
 
   setUserAuthToken: function(state, auth_token) {
@@ -54,6 +62,33 @@ const actions = {
           reject(error)
         }).finally(() => {
           //
+        })
+    })
+  },
+
+  registerUser: function(_, payload) {
+    return new Promise((resolve, reject) => {
+      axios
+        .post('/auth/users/', {
+          'first_name': payload.firstName,
+          'last_name': payload.lastName,
+          'email': payload.email,
+          'password': payload.password,
+          're_password': payload.confirmPassword,
+        })
+        .then((resp) => {
+          console.log(resp)
+
+          if (resp.status === 201) {
+            resolve(resp.data)
+          } else {
+            reject(resp.data)
+          }
+        })
+        .catch((error) => {
+          console.debug(error)
+
+          reject(error)
         })
     })
   }
