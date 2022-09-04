@@ -34,12 +34,14 @@ const mutations = {
 
   setUserAuthToken: function(state, auth_token) {
     state.user.auth_token = auth_token
+    axios.defaults.headers.common['Authorization'] = `Token ${auth_token}`
   },
 
   unsetUser: function(state) {
     for (let key of Object.keys(state.user)) {
       state.user[key] = ''
     }
+    axios.defaults.headers.common['Authorization'] = ''
   }
 }
 
