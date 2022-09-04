@@ -1,3 +1,5 @@
+import axios from '@/axiosConf'
+
 const state = () => ({
   user: {
     id: '',
@@ -36,7 +38,6 @@ const mutations = {
 const actions = {
   authenticate: function({ commit }, payload) {
     return new Promise((resolve, reject) => {
-      const axios = this._vm.$axios
       axios
         .post('/auth/token/login/', {
           email: payload.email,
