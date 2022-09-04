@@ -19,8 +19,15 @@ const getters = {
     return state.user.email
   },
 
-  getUserFullName: function(state, getters) {
-    return getters.isLoggedIn ? `${state.user.firstName} ${state.user.lastName}` : ""
+  getUserFullName: function(state) {
+    let fullName = ""
+    if (state.user.firstName) {
+      fullName = state.user.firstName + " "
+    }
+    if (state.user.lastName) {
+      fullName += state.user.lastName
+    }
+    return fullName
   }
 }
 
