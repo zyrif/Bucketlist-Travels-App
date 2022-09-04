@@ -9,12 +9,12 @@ const state = () => ({
 });
 
 const getters = {
-  getUserId: function() {
-    return this.user.id
+  getUserId: function(state) {
+    return state.user.id
   },
 
-  getUserEmail: function() {
-    return this.user.email
+  getUserEmail: function(state) {
+    return state.user.email
   }
 }
 
