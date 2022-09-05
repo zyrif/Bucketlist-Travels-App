@@ -4,7 +4,7 @@
       <site-logo v-if="showLogo" dark />
       <v-spacer></v-spacer>
       <v-btn
-        v-if="showLogin"
+        v-if="!isLoggedIn"
         dark
         outlined
         rounded
@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import SiteLogo from "./components/SiteLogo.vue";
 
 export default {
@@ -40,10 +41,10 @@ export default {
       return this.$route.name === "Login" ? false : true;
     },
     showAvatar: function () {
-      if (this.$route.name === "Home" || this.$route.name === "Login") {
-        return false;
+      if (this.$route.name === "Dashboard" && this.isLoggedIn) {
+        return true;
       }
-      return true;
+      return false;
     },
     getVAppStyles: function () {
       return {
@@ -65,7 +66,8 @@ export default {
       return this.$route.name === "Home" || this.$route.name === "Login"
         ? "rgba(0, 0, 0, 0)"
         : "rgba(255, 255, 255, 255)"
-    }
+    },
+    ...mapGetters("auth", ["isLoggedIn"])
   },
   methods: {
     loginHandler: function () {
