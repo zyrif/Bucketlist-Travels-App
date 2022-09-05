@@ -28,6 +28,19 @@ const getters = {
       fullName += state.user.lastName
     }
     return fullName
+  },
+
+  getUserAlias: function(_, getters) {
+    if (!getters.isLoggedIn) return ""
+
+    let alias = getters.getUserFullName
+    if (!alias) {
+      if (!getters.getUserId || !getters.getUserEmail) return ""
+
+      alias = getters.getUserEmail.split("@")[0]
+      alias += `#${getters.getUserId.toString()}`
+    }
+    return alias
   }
 }
 
