@@ -54,6 +54,19 @@ const getters = {
       alias += `#${getters.getUserId.toString()}`
     }
     return alias
+  },
+
+  getUserInitials: function(_, getters) {
+    const alias = getters.getUserAlias
+    if (!alias) return ""
+
+    const parts = alias.split(" ")
+    let initials = parts[0].split("")[0].toUpperCase()
+    if (parts.length > 1) {
+      initials += parts[1].split("")[0].toUpperCase()
+    }
+
+    return initials
   }
 }
 
@@ -79,7 +92,7 @@ const mutations = {
 }
 
 const actions = {
-  authenticate: function({ commit }, payload) {
+  authenticate: function({ commit, dispatch }, payload) {
     return new Promise((resolve, reject) => {
       axios
         .post('/auth/token/login/', {
@@ -89,6 +102,7 @@ const actions = {
         .then((resp) => {
           if (resp.status === 200) {
             commit('setUserAuthToken', resp.data.auth_token)
+            dispatch('fetchUserData')
             resolve(resp)
           } else {
             reject(resp)

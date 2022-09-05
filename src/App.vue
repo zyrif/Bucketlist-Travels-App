@@ -14,7 +14,7 @@
         Sign in
       </v-btn>
       <v-avatar v-if="showAvatar" color="#264F49" class="my-auto">
-        <span class="white--text text-h6 font-weight-light">MR</span>
+        <span class="white--text text-h6 font-weight-light">{{ this.getUserInitials }}</span>
       </v-avatar>
     </v-app-bar>
 
@@ -67,7 +67,7 @@ export default {
         ? "rgba(0, 0, 0, 0)"
         : "rgba(255, 255, 255, 255)"
     },
-    ...mapGetters("auth", ["isLoggedIn"])
+    ...mapGetters("auth", ["isLoggedIn", "getUserInitials"])
   },
   methods: {
     loginHandler: function () {
