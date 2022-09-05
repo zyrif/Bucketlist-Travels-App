@@ -100,6 +100,28 @@ const actions = {
           reject(error)
         })
     })
+  },
+
+  fetchUserData: function({ state, commit }) {
+    return new Promise((resolve, reject) => {
+      axios
+        .get('/auth/users/me/')
+        .then((resp) => {
+          console.log(resp)
+
+          if (resp.status === 200) {
+            commit('setUser', resp.data)
+            resolve(state.user)
+          } else {
+            reject(resp.data)
+          }
+        })
+        .catch((error) => {
+          console.debug(error)
+
+          reject(error)
+        })
+    })
   }
 }
 
