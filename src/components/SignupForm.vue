@@ -1,7 +1,10 @@
 <template>
   <v-col cols="4">
     <site-logo logotype="hero" />
-    <v-text-field dark placeholder="Username">
+    <v-text-field dark placeholder="First Name">
+      <v-icon slot="prepend" class="mr-4">far fa-user</v-icon>
+    </v-text-field>
+    <v-text-field dark placeholder="Last Name">
       <v-icon slot="prepend" class="mr-4">far fa-user</v-icon>
     </v-text-field>
     <v-text-field dark placeholder="Email">
