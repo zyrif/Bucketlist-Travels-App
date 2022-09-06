@@ -12,16 +12,11 @@ const state = () => ({
 
 const getters = {
   isLoggedIn: function(state) {
-    const axios_token = axios.defaults.headers.common['Authorization']
-    if (axios_token) {
+    if (state.user.auth_token) {
+      axios.defaults.headers.common['Authorization'] = `Token ${state.user.auth_token}`
       return true
-    } else {
-      if (state.user.auth_token) {
-        axios.defaults.headers.common['Authorization'] = `Token ${state.user.auth_token}`
-        return true
-      }
-      return false
     }
+    return false
   },
 
   getUserId: function(state) {
