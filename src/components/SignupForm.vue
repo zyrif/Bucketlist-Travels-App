@@ -7,13 +7,13 @@
     <v-text-field v-model="form.lastName" dark placeholder="Last Name">
       <v-icon slot="prepend" class="mr-4">far fa-user</v-icon>
     </v-text-field>
-    <v-text-field v-model="form.email" dark placeholder="Email" type="email">
+    <v-text-field v-model="form.email" dark placeholder="Email" :rules="[rules.required, rules.email]" type="email">
       <v-icon slot="prepend" class="mr-4">far fa-envelope</v-icon>
     </v-text-field>
-    <v-text-field v-model="form.password" dark placeholder="Password" type="password">
+    <v-text-field v-model="form.password" dark placeholder="Password" :rules="[rules.required, rules.password]" type="password">
       <v-icon slot="prepend" class="mr-4">fas fa-lock</v-icon>
     </v-text-field>
-    <v-text-field v-model="form.confirmPassword" dark placeholder="Confirm Password" type="password">
+    <v-text-field v-model="form.confirmPassword" dark placeholder="Confirm Password" :rules="[rules.required]" type="password">
       <v-icon slot="prepend" class="mr-4">fas fa-lock</v-icon>
     </v-text-field>
     <div class="text-center mt-8">
@@ -29,11 +29,14 @@
 <script>
 import { mapActions } from 'vuex'
 import SiteLogo from '../components/SiteLogo.vue'
+import loginValidators from "@/mixins/validators/loginValidators"
 
 export default {
   name: 'SignupForm',
 
   components: { SiteLogo },
+
+  mixins: [loginValidators],
 
   data: function () {
     return {
