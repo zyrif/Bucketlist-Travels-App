@@ -110,6 +110,30 @@ const actions = {
     })
   },
 
+  signOut: function({ commit }) {
+    return new Promise((resolve, reject) => {
+      axios
+        .post('/auth/token/logout/')
+        .then((resp) => {
+          console.log(resp)
+
+          if (resp.status === 204) {
+            resolve(true)
+          } else {
+            reject(resp.data)
+          }
+        })
+        .catch((error) => {
+          console.debug(error)
+
+          reject(error)
+        })
+        .finally(() => {
+          commit('unsetUser')
+        })
+    })
+  },
+
   registerUser: function(_, payload) {
     return new Promise((resolve, reject) => {
       axios

@@ -13,9 +13,18 @@
       >
         Sign in
       </v-btn>
-      <v-avatar v-if="showAvatar" color="#264F49" class="my-auto">
-        <span class="white--text text-h6 font-weight-light">{{ this.getUserInitials }}</span>
-      </v-avatar>
+      <v-menu v-if="showAvatar" offset-y open-on-hover>
+        <template #activator="{ on }">
+          <v-btn depressed fab color="#264F49" class="my-auto" :ripple="false" v-on="on">
+            <span class="white--text text-h6 font-weight-light">{{ getUserInitials }}</span>
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item link @click="logoutHandler">
+            <v-list-item-title class="px-2">Logout</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
     </v-app-bar>
 
     <v-main v-bind="getVMainStyles">
@@ -25,7 +34,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import SiteLogo from "./components/SiteLogo.vue";
 
 export default {
@@ -73,6 +82,19 @@ export default {
     loginHandler: function () {
       this.$router.push("/login");
     },
+
+    logoutHandler: function () {
+      this
+        .signOut()
+        .catch(() => {
+          console.error("Failed to sign out properly")
+        })
+        .finally(() => {
+          this.$router.push("/")
+        })
+    },
+
+    ...mapActions("auth", ["signOut"])
   },
 };
 </script>
