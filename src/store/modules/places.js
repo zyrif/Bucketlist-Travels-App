@@ -51,6 +51,29 @@ const actions = {
         })
     })
   },
+
+  searchPlaces: function({ commit }, payload = { searchTerm: "" }) {
+    // do basic sanitization of the search term
+    payload.searchTerm = payload.searchTerm.trim().replaceAll(" ", "+")
+    return new Promise((resolve, reject) => {
+      axios
+        .get(`/place/?search=${payload.searchTerm}`)
+        .then((resp) => {
+          if (resp.status === 200) {
+            commit("setData", { append: false, data: resp.data })
+            resolve(resp.data)
+          } else {
+            reject(resp)
+          }
+        })
+        .catch((error) => {
+          reject(error)
+        })
+        .finally(() => {
+          //
+        })
+    })
+  }
 }
 
 export default {
