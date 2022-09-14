@@ -26,30 +26,39 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   props: {
     myList: Boolean,
   },
+
   data: () => ({
-    places: [
-        {
-          id: 1,
-          sortOrder: 1,
-          name: "Vinnya Jagat",
-          description: "Vinnya Jagat is located at Paglapir, Khaleya, Rangpur. This is the only amusement park listed in Rangpur.",
-          coOrdinates: { lat: 25.833195220070884, lon: 89.1118665127216 },
-          visited: true,
-        },
-        {
-          id: 2,
-          sortOrder: 2,
-          name: "Tajhat Jamidar Palace",
-          description: "Tajhat Palace, Tajhat Rajbari, is a historic palace of Bangladesh, located in Tajhat, Rangpur. This palace now holds the Rangpur museum. Tajhat Palace is situated three km. south-east of the city of Rangpur, on the outskirts of town.",
-          coOrdinates: { lat: 25.725456774856756, lon: 89.27992473534323 },
-          visited: false,
+    //
+  }),
+
+  computed: {
+    places: function() {
+      return this.$store.state.places.results.map((item, index) => ({
+        id: item.id,
+        sortOrder: index,
+        name: item.name,
+        description: item.description,
+        visited: item.visited,
+        coOrdinates: {
+          lat: item.coordinate.lat,
+          lon: item.coordinate.lon,
         }
-      ]
-  })
+      }))
+    }
+  },
+
+  beforeMount: function () {
+    this.fetchPlaces({ next: false }).catch((error) => console.debug(error))
+  },
+
+  methods: {
+    ...mapActions('places', ['fetchPlaces'])
+  }
 }
 </script>
 
