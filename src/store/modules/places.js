@@ -37,7 +37,7 @@ const mutations = {
 }
 
 const actions = {
-  fetchPlaces: function({ state, getters, commit }, payload = { next: true }) {
+  fetchPlaces: function({ state, getters, commit }, payload = { next: false }) {
     return new Promise((resolve, reject) => {
       const fetchNext = payload.next && getters.hasRemaining
       axios
