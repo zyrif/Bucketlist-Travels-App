@@ -37,11 +37,12 @@ const mutations = {
 }
 
 const actions = {
-  fetchPlaces: function({ state, getters, commit }, payload = { next: false }) {
+  fetchPlaces: function({ state, getters, commit }, payload = { next: false, myList: false }) {
     return new Promise((resolve, reject) => {
+      const url = payload.myList ? "/bucketlist/place/" : "/place/"
       const fetchNext = payload.next && getters.hasRemaining
       axios
-        .get(fetchNext ? state.next : "/place/")
+        .get(fetchNext ? state.next : url)
         .then((resp) => {
           if (resp.status === 200) {
             commit("setData", { append: fetchNext, data: resp.data })

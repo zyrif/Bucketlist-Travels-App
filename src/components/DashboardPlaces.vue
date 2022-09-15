@@ -61,8 +61,14 @@ export default {
     }
   },
 
+  watch: {
+    myList: function () {
+      this.fetchPlaces({ next: false, myList: this.myList }).catch((error) => console.debug(error))
+    }
+  },
+
   beforeMount: function () {
-    this.fetchPlaces({ next: false }).catch((error) => console.debug(error))
+    this.fetchPlaces({ next: false, myList: this.myList }).catch((error) => console.debug(error))
   },
 
   methods: {
