@@ -27,6 +27,13 @@ const mutations = {
       state.results = payload.data.results || []
     }
   },
+
+  updatePlace: function(state, payload = { place: {} }) {
+    const index = state.results.findIndex((item) => item.id === payload.place.id)
+
+    // see: https://v2.vuejs.org/v2/guide/reactivity.html#For-Arrays
+    state.results.splice(index, 1, payload.place)
+  }
 }
 
 const actions = {
@@ -71,6 +78,39 @@ const actions = {
         })
         .finally(() => {
           //
+        })
+    })
+  },
+
+  handleBucketlistLink: function({ state, commit }, payload = { action: "", id: 0 }) {
+    return new Promise((resolve, reject) => {
+      if (!(payload.action.toLowerCase() === "add" || payload.action.toLowerCase() === "remove")) {
+        reject("Invalid action specified")
+      }
+      if (!payload.id) {
+        reject("Place ID is required")
+      }
+
+      axios.post("/bucketlist/place/", {
+        "action": payload.action,
+        "place_id": payload.id
+      })
+        .then((resp) => {
+          if (resp.status === 204) {
+            const item = state.results.find((item) => item.id === payload.id)
+            if (payload.action.toLowerCase() === "add") {
+              item.visited = true
+            } else if (payload.action.toLowerCase() === "remove") {
+              item.visited = false
+            }
+            commit("updatePlace", { place: item })
+            resolve(true)
+          } else {
+            reject(resp.data)
+          }
+        })
+        .catch((error) => {
+          reject(error)
         })
     })
   }

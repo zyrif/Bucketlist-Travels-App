@@ -21,10 +21,10 @@
             <v-btn icon class="mx-2">
               <v-icon dense color="black"> fas fa-location-arrow </v-icon>
             </v-btn>
-            <v-btn v-if="!myList && !place.visited" icon class="mx-2">
+            <v-btn v-if="!myList && !place.visited" icon class="mx-2" @click="addToBucketListHandler(place)">
               <v-icon dense color="black"> fas fa-plus-circle </v-icon>
             </v-btn>
-            <v-btn v-if="!myList && place.visited" icon class="mx-2">
+            <v-btn v-if="!myList && place.visited" icon class="mx-2" @click="removeFromBucketListHandler(place)">
               <v-icon dense color="black"> fas fa-check-circle </v-icon>
             </v-btn>
           </v-card-text>
@@ -66,7 +66,15 @@ export default {
   },
 
   methods: {
-    ...mapActions('places', ['fetchPlaces'])
+    addToBucketListHandler: function (place) {
+      this.handleBucketlistLink({ action: "add", id: place.id })
+    },
+
+    removeFromBucketListHandler: function (place) {
+      this.handleBucketlistLink({ action: "remove", id: place.id })
+    },
+
+    ...mapActions('places', ['fetchPlaces', 'handleBucketlistLink'])
   }
 }
 </script>
