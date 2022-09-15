@@ -31,7 +31,7 @@
             </v-btn>
           </template>
         </v-text-field>
-        <places v-if="resultsVisible" />
+        <place v-if="resultsVisible" />
       </v-col>
     </v-row>
   </v-container>
@@ -40,9 +40,9 @@
 <script>
 import Vue from 'vue'
 import SiteLogo from '../components/SiteLogo.vue'
-import Places from '../components/DashboardPlaces.vue'
+import Place from '../components/DashboardPlace.vue'
 export default {
-  components: { SiteLogo, Places },
+  components: { SiteLogo, Place },
   data: () => ({
     searchText: '',
     resultsVisible: false,

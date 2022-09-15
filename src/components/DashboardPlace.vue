@@ -46,8 +46,8 @@ export default {
   }),
 
   computed: {
-    places: function() {
-      return this.$store.state.places.results.map((item, index) => ({
+    places: function () {
+      return this.$store.state.place.results.map((item, index) => ({
         id: item.id,
         sortOrder: index,
         name: item.name,
@@ -80,7 +80,7 @@ export default {
       this.handleBucketlistLink({ action: "remove", id: place.id })
     },
 
-    ...mapActions('places', ['fetchPlaces', 'handleBucketlistLink'])
+    ...mapActions('place', ['fetchPlaces', 'handleBucketlistLink'])
   }
 }
 </script>

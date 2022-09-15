@@ -45,7 +45,7 @@ export default {
       this.searchBtnHandler()
     },
 
-    ...mapActions('places', ['searchPlaces'])
+    ...mapActions('place', ['searchPlaces'])
   }
 
 }
