@@ -1,16 +1,16 @@
 <template>
   <v-card rounded="lg" color="grey lighten-4" elevation="0"
-    class="ma-4 pa-2">
+    class="ma-4 pa-2" :max-height="narrow ? '220px' : ''">
     <div class="d-flex">
       <div>
-        <v-avatar tile color="grey" size="140" class="ma-4">
+        <v-avatar v-if="!narrow" tile color="grey" size="140" class="ma-4">
         </v-avatar>
       </div>
       <div>
         <v-card-title class="text-h5">
           {{ place.name }}
         </v-card-title>
-        <v-card-text class="black--text">
+        <v-card-text class="black--text" :class="{ 'text-truncate': narrow }" :style="{ 'max-width': narrow ? '46vw' : '' }">
           {{ place.description }}
         </v-card-text>
         <v-card-text>
@@ -41,7 +41,11 @@ export default {
     },
     "my-list": {
       type: Boolean,
-      default: true,
+      default: false,
+    },
+    narrow: {
+      type: Boolean,
+      default: false,
     }
   }
 }
