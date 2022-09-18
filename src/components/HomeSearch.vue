@@ -9,8 +9,8 @@
       </template>
 
       <template #append>
-        <v-btn v-if="!showClearBtn" dark rounded color="#3e7758" elevation="0" style="top: -7px; left: 14px"
-          @click="searchBtnHandler">
+        <v-btn v-if="!showClearBtn" dark rounded :loading="isSearchBtnLoading" color="#3e7758" elevation="0"
+          style="top: -7px; left: 14px" @click="searchBtnHandler">
           GO!
         </v-btn>
         <v-btn v-else dark rounded color="#3e7758" elevation="0" style="top: -7px; left: 14px" @click="clearBtnHandler">
@@ -32,6 +32,10 @@ export default {
 
   mixins: [SearchMixin],
 
+  data: () => ({
+    isSearchBtnLoading: false
+  }),
+
   computed: {
     searchInputClasses: function () {
       return this.showResults ? 'mt-16' : ''
@@ -40,12 +44,14 @@ export default {
 
   methods: {
     searchBtnHandler: function () {
+      this.isSearchBtnLoading = true
       if (this.searchTerm) {
         this.searchPlaces({ searchTerm: this.searchTerm })
           .then(() => {
             this.prevSearch = this.searchTerm
           })
           .catch((error) => console.debug(error))
+          .finally(() => this.isSearchBtnLoading = false)
       }
     },
 
