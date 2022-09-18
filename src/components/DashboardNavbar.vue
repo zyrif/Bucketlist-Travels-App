@@ -1,7 +1,7 @@
 <template>
   <v-card elevation="0">
     <v-list dense>
-      <v-list-item-group v-model="activeItem">
+      <v-list-item-group v-model="activeItem" mandatory>
         <v-list-item>
           <v-list-item-content class="pl-8">
             <v-list-item-title>Explore Areas</v-list-item-title>
