@@ -51,6 +51,7 @@ export default {
 
     clearBtnHandler: function () {
       this.searchTerm = ''
+      this.prevSearch = ''
       this.$store.commit("place/setData")
     },
   }
