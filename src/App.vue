@@ -29,17 +29,19 @@
 
     <v-main v-bind="getVMainStyles">
       <router-view />
+      <message-dialog />
     </v-main>
   </v-app>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import SiteLogo from "./components/SiteLogo.vue";
+import SiteLogo from "./components/SiteLogo.vue"
+import MessageDialog from "./components/MessageDialog.vue"
 
 export default {
   name: "App",
-  components: { SiteLogo },
+  components: { SiteLogo, MessageDialog },
   computed: {
     showLogo: function () {
       return this.$route.name === "Home" || this.$route.name === "Login"
