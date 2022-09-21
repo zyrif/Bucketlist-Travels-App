@@ -72,7 +72,40 @@ export default {
         .then(() => {
           this.$router.push("/dashboard");
         })
-        .catch(() => console.error('auth failed!'))
+        .catch((error) => {
+          if (error.response && (error.response.status >= 400 && error.response.status <= 499)) {
+            if (error.response.status === 400 && "non_field_errors" in error.response.data) {
+              this.openMessageDialog({
+                title: "Authentication Error",
+                body: error.response.data.non_field_errors.toString(),
+                canChoose: false,
+                defaultBtnText: "Dismiss"
+              })
+            } else {
+              console.log(error.response.data)
+              this.openMessageDialog({
+                title: "Unknown Error",
+                body: "Check browser console for details.",
+                canChoose: false,
+                defaultBtnText: "Dismiss"
+              })
+            }
+          } else if (error.response && (error.response.status >= 500 && error.response.status <= 599)) {
+            this.openMessageDialog({
+              title: "Server Error",
+              body: "Server could not process this request.",
+              canChoose: false,
+              defaultBtnText: "Dismiss"
+            })
+          } else {
+            this.openMessageDialog({
+              title: "Network Error",
+              body: "Unable to reach the app server.",
+              canChoose: false,
+              defaultBtnText: "Dismiss"
+            })
+          }
+        })
         .finally(() => {
           this.states.isSignInBtnLoading = false
         })
@@ -85,7 +118,9 @@ export default {
     ForgetPasswordHandler: function () {
       this.states.isForgetPassOpen = !this.states.isForgetPassOpen;
     },
-    ...mapActions('auth', ['authenticate'])
+
+    ...mapActions('auth', ['authenticate']),
+    ...mapActions('globalStates', ['openMessageDialog'])
   },
 };
 </script>
