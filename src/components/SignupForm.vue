@@ -17,7 +17,7 @@
       <v-icon slot="prepend" class="mr-4">fas fa-lock</v-icon>
     </v-text-field>
     <div class="text-center mt-8">
-      <v-btn dark outlined rounded @click="signUpHandler">Sign Up</v-btn>
+      <v-btn dark outlined rounded :loading="this.states.isSignUpBtnLoading" @click="signUpHandler">Sign Up</v-btn>
     </div>
     <p class="text-center white--text mt-4">or</p>
     <div class="text-center">
@@ -46,6 +46,10 @@ export default {
         email: '',
         password: '',
         confirmPassword: ''
+      },
+
+      states: {
+        isSignUpBtnLoading: false
       }
     }
   },
@@ -56,6 +60,7 @@ export default {
         return
       }
 
+      this.states.isSignUpBtnLoading = true
       this
         .registerUser(this.form)
         .then(() => {
@@ -103,7 +108,7 @@ export default {
           }
         })
         .finally(() => {
-          //
+          this.states.isSignUpBtnLoading = false
         })
     },
 
