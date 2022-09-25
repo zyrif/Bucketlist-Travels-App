@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import Store from '../store'
 import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Dashboard from '../views/Dashboard.vue'
@@ -20,8 +21,17 @@ const routes = [
   {
     path: '/dashboard',
     name: 'Dashboard',
-    component: Dashboard
-  },
+    component: Dashboard,
+    beforeEnter: (to, _, next) => {
+      if (Store.getters["auth/isLoggedIn"] === true) {
+        next()
+      } else {
+        next({
+          path: '/login'
+        })
+      }
+    }
+  }
 ]
 // route level code-splitting
 // this generates a separate chunk (about.[hash].js) for this route
