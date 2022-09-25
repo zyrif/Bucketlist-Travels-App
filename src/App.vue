@@ -30,6 +30,7 @@
     <v-main v-bind="getVMainStyles">
       <router-view />
       <message-dialog />
+      <message-snackbar />
     </v-main>
   </v-app>
 </template>
@@ -38,10 +39,11 @@
 import { mapGetters, mapActions } from 'vuex'
 import SiteLogo from "./components/SiteLogo.vue"
 import MessageDialog from "./components/MessageDialog.vue"
+import MessageSnackbar from "./components/MessageSnackbar.vue"
 
 export default {
   name: "App",
-  components: { SiteLogo, MessageDialog },
+  components: { SiteLogo, MessageDialog, MessageSnackbar },
   computed: {
     showLogo: function () {
       return this.$route.name === "Home" || this.$route.name === "Login"

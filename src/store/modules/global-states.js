@@ -10,6 +10,16 @@ const state = () => ({
     canChoose: true,
     defaultBtnText: 'Okay',
     cancelBtnText: 'Cancel',
+  },
+
+  messageSnackbar: {
+    open: false,
+    resolve: null,
+    reject: null,
+    body: "Snackbar wasn't properly opened",
+    color: "green lighen-1",
+    timeout: "3000",
+    actionBtnText: "Dismiss"
   }
 })
 
@@ -27,12 +37,21 @@ const mutations = {
     state.messageDialog.canChoose = payload.canChoose || false
     state.messageDialog.defaultBtnText = payload.defaultBtnText || 'Okay'
     state.messageDialog.cancelBtnText = payload.cancelBtnText || 'Cancel'
+  },
+
+  setMessageSnackbarValues: function(state, payload = {}) {
+    state.messageSnackbar.open = payload.open || false
+    state.messageSnackbar.resolve = payload.resolve || null
+    state.messageSnackbar.reject = payload.reject || null
+    state.messageSnackbar.body = payload.body || "Snackbar wasn't properly opened"
+    state.messageSnackbar.color = payload.color || "green lighen-1"
+    state.messageSnackbar.timeout = payload.timeout || "3000"
+    state.messageSnackbar.actionBtnText = payload.actionBtnText || "Dismiss"
   }
 }
 
 const actions = {
   openMessageDialog: function({ commit }, payload = {}) {
-    console.debug(payload)
     return new Promise((resolve, reject) => {
       commit('setMessageDialogValues', {
         open: true,
@@ -51,6 +70,24 @@ const actions = {
   resolveMessageDialog: function({ state, commit }, value = true) {
     state.messageDialog.resolve(value)
     commit('setMessageDialogValues', { open: false })
+  },
+
+  openMessageSnackbar: function({ commit }, payload = {}) {
+    return new Promise((resolve, reject) => {
+      commit("setMessageSnackbarValues", {
+        open: true,
+        resolve: resolve,
+        reject: reject,
+        body: payload.body,
+        color: payload.color,
+        timeout: payload.timeout,
+        actionBtnText: payload.actionBtnText
+      })
+    })
+  },
+  resolveMessageSnackbar: function({ state, commit }) {
+    state.messageSnackbar.resolve(true)
+    commit("setMessageSnackbarValues", { open: false })
   }
 }
 
