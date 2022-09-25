@@ -52,6 +52,7 @@ export default {
             console.log(data)
             if (data.count > 0) {
               this.prevSearch = this.searchTerm
+              this.$emit("results-visible", true)
             } else {
               this.openMessageSnackbar({ body: "No result found for this search." })
             }
@@ -64,8 +65,8 @@ export default {
     },
 
     clearBtnHandler: function () {
-      this.searchTerm = ''
-      this.prevSearch = ''
+      this.searchTerm = this.prevSearch = ''
+      this.$emit("results-visible", false)
       this.$store.commit("place/setData")
     },
 
