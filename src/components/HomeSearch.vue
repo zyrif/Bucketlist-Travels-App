@@ -48,8 +48,14 @@ export default {
       if (this.searchTerm) {
         this.isSearchBtnLoading = true
         this.searchPlaces({ searchTerm: this.searchTerm })
-          .then(() => {
-            this.prevSearch = this.searchTerm
+          .then((data) => {
+            console.log(data)
+            if (data.count > 0) {
+              this.prevSearch = this.searchTerm
+            } else {
+              this.openMessageSnackbar({ body: "No result found for this search." })
+            }
+          })
           .catch((error) => {
             this.openMessageSnackbar({ body: error.message, color: "error" })
           })
