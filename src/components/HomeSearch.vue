@@ -44,8 +44,8 @@ export default {
 
   methods: {
     searchBtnHandler: function () {
-      this.isSearchBtnLoading = true
       if (this.searchTerm) {
+        this.isSearchBtnLoading = true
         this.searchPlaces({ searchTerm: this.searchTerm })
           .then(() => {
             this.prevSearch = this.searchTerm
