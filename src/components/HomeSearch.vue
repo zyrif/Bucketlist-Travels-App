@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import Place from '@/components/HomeSearchPlace.vue'
 import SearchMixin from '@/mixins/search'
 export default {
@@ -49,8 +50,9 @@ export default {
         this.searchPlaces({ searchTerm: this.searchTerm })
           .then(() => {
             this.prevSearch = this.searchTerm
+          .catch((error) => {
+            this.openMessageSnackbar({ body: error.message, color: "error" })
           })
-          .catch((error) => console.debug(error))
           .finally(() => this.isSearchBtnLoading = false)
       }
     },
@@ -60,6 +62,8 @@ export default {
       this.prevSearch = ''
       this.$store.commit("place/setData")
     },
+
+    ...mapActions('globalStates', ['openMessageSnackbar'])
   }
 }
 </script>
