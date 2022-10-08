@@ -60,6 +60,13 @@ const actions = {
     })
   },
 
+  clearPlaces: function({ commit }) {
+    return new Promise((resolve) => {
+      commit("setData")
+      resolve(true)
+    })
+  },
+
   searchPlaces: function({ commit }, payload = { searchTerm: "" }) {
     // do basic sanitization of the search term
     payload.searchTerm = payload.searchTerm.trim().replaceAll(" ", "+")

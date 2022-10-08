@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import SiteLogo from '../components/SiteLogo.vue'
 import Search from '@/components/HomeSearch.vue'
 export default {
@@ -19,10 +20,16 @@ export default {
     logoVisible: true
   }),
 
+  mounted: function () {
+    this.clearPlaces()
+  },
+
   methods: {
     toggleLogoHandler: function (value) {
       this.logoVisible = !value
-    }
+    },
+
+    ...mapActions("place", ["clearPlaces"]),
   }
 
 }
