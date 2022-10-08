@@ -87,35 +87,33 @@ const actions = {
     return new Promise((resolve, reject) => {
       if (rootGetters["auth/isLoggedIn"] === false) {
         reject("Log in required for this action")
-      }
-      if (!(payload.action.toLowerCase() === "add" || payload.action.toLowerCase() === "remove")) {
+      } else if (!(payload.action.toLowerCase() === "add" || payload.action.toLowerCase() === "remove")) {
         reject("Invalid action specified")
-      }
-      if (!payload.id) {
+      } else if (!payload.id) {
         reject("Place ID is required")
-      }
-
-      axios.post("/bucketlist/place/", {
-        "action": payload.action,
-        "place_id": payload.id
-      })
-        .then((resp) => {
-          if (resp.status === 204) {
-            const item = state.results.find((item) => item.id === payload.id)
-            if (payload.action.toLowerCase() === "add") {
-              item.visited = true
-            } else if (payload.action.toLowerCase() === "remove") {
-              item.visited = false
+      } else {
+        axios.post("/bucketlist/place/", {
+          "action": payload.action,
+          "place_id": payload.id
+        })
+          .then((resp) => {
+            if (resp.status === 204) {
+              const item = state.results.find((item) => item.id === payload.id)
+              if (payload.action.toLowerCase() === "add") {
+                item.visited = true
+              } else if (payload.action.toLowerCase() === "remove") {
+                item.visited = false
+              }
+              commit("updatePlace", { place: item })
+              resolve(true)
+            } else {
+              reject(resp.data)
             }
-            commit("updatePlace", { place: item })
-            resolve(true)
-          } else {
-            reject(resp.data)
-          }
-        })
-        .catch((error) => {
-          reject(error)
-        })
+          })
+          .catch((error) => {
+            reject(error)
+          })
+      }
     })
   }
 }
