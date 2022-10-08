@@ -20,10 +20,10 @@
           <v-btn icon class="mx-2" @click="openMessageDialog({title: 'Apologies!', body: 'This feature has not been implemented yet'})">
             <v-icon dense color="black"> fas fa-location-arrow </v-icon>
           </v-btn>
-          <v-btn v-if="!myList && !place.visited" icon class="mx-2" @click="$emit('add-visited', place)">
+          <v-btn v-if="!myList && !place.visited" icon :loading="states.isAddVisitedBtnLoading" class="mx-2" @click="$emit('add-visited', place)">
             <v-icon dense color="black"> fas fa-plus-circle </v-icon>
           </v-btn>
-          <v-btn v-if="!myList && place.visited" icon class="mx-2" @click="$emit('remove-visited', place)">
+          <v-btn v-if="!myList && place.visited" icon :loading="states.isRemoveVisitedBtnLoading" class="mx-2" @click="$emit('remove-visited', place)">
             <v-icon dense color="black"> fas fa-check-circle </v-icon>
           </v-btn>
         </v-card-text>
@@ -50,7 +50,22 @@ export default {
     }
   },
 
+  data: () => ({
+    states: {
+      isAddVisitedBtnLoading: false,
+      isRemoveVisitedBtnLoading: false
+    }
+  }),
+
   methods: {
+    toggleAddVisitedBtnLoading: function () {
+      this.states.isAddVisitedBtnLoading = !this.states.isAddVisitedBtnLoading
+    },
+
+    toggleRemoveVisitedBtnLoading: function () {
+      this.states.isRemoveVisitedBtnLoading = !this.states.isRemoveVisitedBtnLoading
+    },
+
     ...mapActions('globalStates', ['openMessageDialog'])
   }
 }

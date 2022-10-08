@@ -1,7 +1,7 @@
 <template>
   <div style="display:contents">
-    <place-item v-for="place in places" v-bind:key="place.sortOrder" :place="place" :my-list="myList"
-      @add-visited="addToBucketListHandler" @remove-visited="removeFromBucketListHandler" />
+    <place-item v-for="place in places" v-bind:key="place.sortOrder" :ref="`place-item-${place.id}`" :place="place"
+      :my-list="myList" @add-visited="addToBucketListHandler" @remove-visited="removeFromBucketListHandler" />
   </div>
 </template>
 
@@ -49,11 +49,21 @@ export default {
 
   methods: {
     addToBucketListHandler: function (place) {
-      this.handleBucketlistLink({ action: "add", id: place.id })
+      this.$refs[`place-item-${place.id}`][0].toggleAddVisitedBtnLoading()
+      this
+        .handleBucketlistLink({ action: "add", id: place.id })
+        .finally(() => {
+          this.$refs[`place-item-${place.id}`][0].toggleAddVisitedBtnLoading()
+        })
     },
 
     removeFromBucketListHandler: function (place) {
-      this.handleBucketlistLink({ action: "remove", id: place.id })
+      this.$refs[`place-item-${place.id}`][0].toggleRemoveVisitedBtnLoading()
+      this
+        .handleBucketlistLink({ action: "remove", id: place.id })
+        .finally(() => {
+          this.$refs[`place-item-${place.id}`][0].toggleRemoveVisitedBtnLoading()
+        })
     },
 
     ...mapActions('place', ['fetchPlaces', 'handleBucketlistLink'])
