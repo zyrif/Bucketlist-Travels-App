@@ -14,10 +14,10 @@
           {{ place.description }}
         </v-card-text>
         <v-card-text>
-          <v-btn icon class="mx-2">
+          <v-btn icon class="mx-2" @click="openMessageDialog({title: 'Apologies!', body: 'This feature has not been implemented yet'})">
             <v-icon dense color="black"> fas fa-map-marker-alt </v-icon>
           </v-btn>
-          <v-btn icon class="mx-2">
+          <v-btn icon class="mx-2" @click="openMessageDialog({title: 'Apologies!', body: 'This feature has not been implemented yet'})">
             <v-icon dense color="black"> fas fa-location-arrow </v-icon>
           </v-btn>
           <v-btn v-if="!myList && !place.visited" icon class="mx-2" @click="$emit('add-visited', place)">
@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex"
 export default {
   props: {
     place: {
@@ -47,6 +48,10 @@ export default {
       type: Boolean,
       default: false,
     }
+  },
+
+  methods: {
+    ...mapActions('globalStates', ['openMessageDialog'])
   }
 }
 </script>
