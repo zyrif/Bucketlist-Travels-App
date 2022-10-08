@@ -130,6 +130,7 @@ const actions = {
         })
         .finally(() => {
           commit('unsetUser')
+          commit('place/setData', undefined, { root: true })
         })
     })
   },
