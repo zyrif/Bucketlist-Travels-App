@@ -1,7 +1,8 @@
 <template>
   <v-virtual-scroll max-height="600" itemHeight="220" :items="places">
     <template #default="{ item }">
-      <place-item :place="item" narrow></place-item>
+      <place-item :place="item" narrow @add-visited="addToBucketListHandler"
+        @remove-visited="removeFromBucketListHandler"></place-item>
     </template>
   </v-virtual-scroll>
 </template>
@@ -36,14 +37,23 @@ export default {
 
   methods: {
     addToBucketListHandler: function (place) {
-      this.handleBucketlistLink({ action: "add", id: place.id })
+      this
+        .handleBucketlistLink({ action: "add", id: place.id })
+        .catch((error) => {
+          this.openMessageDialog({ title: "Error!", body: error })
+        })
     },
 
     removeFromBucketListHandler: function (place) {
-      this.handleBucketlistLink({ action: "remove", id: place.id })
+      this
+        .handleBucketlistLink({ action: "remove", id: place.id })
+        .catch((error) => {
+          this.openMessageDialog({ title: "Error!", body: error })
+        })
     },
 
-    ...mapActions('place', ['fetchPlaces', 'handleBucketlistLink'])
+    ...mapActions("place", ["fetchPlaces", "handleBucketlistLink"]),
+    ...mapActions("globalStates", ["openMessageDialog"])
   }
 }</script>
 
