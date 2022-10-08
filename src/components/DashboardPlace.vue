@@ -52,6 +52,9 @@ export default {
       this.$refs[`place-item-${place.id}`][0].toggleAddVisitedBtnLoading()
       this
         .handleBucketlistLink({ action: "add", id: place.id })
+        .catch((error) => {
+          this.openMessageDialog({ title: "Error!", body: error })
+        })
         .finally(() => {
           this.$refs[`place-item-${place.id}`][0].toggleAddVisitedBtnLoading()
         })
@@ -61,12 +64,16 @@ export default {
       this.$refs[`place-item-${place.id}`][0].toggleRemoveVisitedBtnLoading()
       this
         .handleBucketlistLink({ action: "remove", id: place.id })
+        .catch((error) => {
+          this.openMessageDialog({ title: "Error!", body: error })
+        })
         .finally(() => {
           this.$refs[`place-item-${place.id}`][0].toggleRemoveVisitedBtnLoading()
         })
     },
 
-    ...mapActions('place', ['fetchPlaces', 'handleBucketlistLink'])
+    ...mapActions('place', ['fetchPlaces', 'handleBucketlistLink']),
+    ...mapActions("globalStates", ["openMessageDialog"])
   }
 }
 </script>
