@@ -1,7 +1,7 @@
 <template>
   <div style="display:contents">
     <v-text-field ref="searchInput" v-model="searchTerm" filled rounded background-color="white" color="green"
-      placeholder="Search a place you wanna go..." :class="searchInputClasses">
+      placeholder="Search a place you wanna go..." :class="searchInputClasses" :readonly="showClearBtn === true">
       <template #prepend-inner>
         <v-icon dense left>
           fas fa-search
