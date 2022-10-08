@@ -83,8 +83,11 @@ const actions = {
     })
   },
 
-  handleBucketlistLink: function({ state, commit }, payload = { action: "", id: 0 }) {
+  handleBucketlistLink: function({ state, commit, rootGetters }, payload = { action: "", id: 0 }) {
     return new Promise((resolve, reject) => {
+      if (rootGetters["auth/isLoggedIn"] === false) {
+        reject("Log in required for this action")
+      }
       if (!(payload.action.toLowerCase() === "add" || payload.action.toLowerCase() === "remove")) {
         reject("Invalid action specified")
       }
