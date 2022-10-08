@@ -20,6 +20,9 @@
           </v-btn>
         </template>
         <v-list>
+          <v-list-item v-if="this.$route.name === 'Home'" link @click="goToDashboard">
+            <v-list-item-title class="px-2">Dashboard</v-list-item-title>
+          </v-list-item>
           <v-list-item link @click="logoutHandler">
             <v-list-item-title class="px-2">Logout</v-list-item-title>
           </v-list-item>
@@ -54,7 +57,7 @@ export default {
       return this.$route.name === "Login" ? false : true;
     },
     showAvatar: function () {
-      if (this.$route.name === "Dashboard" && this.isLoggedIn) {
+      if (this.$route.name !== "Login" && this.isLoggedIn) {
         return true;
       }
       return false;
@@ -96,6 +99,10 @@ export default {
         .finally(() => {
           this.$router.push("/")
         })
+    },
+
+    goToDashboard: function () {
+      this.$router.push("/dashboard")
     },
 
     ...mapActions("auth", ["signOut"])
